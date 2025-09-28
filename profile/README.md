@@ -6,5 +6,5 @@
 <br>
 <br>
 <p align="center" style="font-weight: bold">
-  <a  href="https://trello.com/b/0H5Yn2mK/brickui">Development pipeline</a>
+  <a  href="https://trello.com/b/0H5Yn2mK/brickui" target="_blank">Development pipeline</a>
 </p>
