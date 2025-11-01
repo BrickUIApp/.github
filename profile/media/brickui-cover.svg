@@ -10,26 +10,6 @@
       <path d="m10 14 11.77-6.87"/>
     </symbol>
 
-    <!-- Pattern isometrico animato -->
-    <pattern id="isoPattern" patternUnits="userSpaceOnUse" width="50" height="45">
-      <!-- Prima riga -->
-      <use href="#cube" x="0" y="0" width="24" height="24" />
-      <use href="#cube" x="70" y="0" width="24" height="24" />
-      <use href="#cube" x="100" y="0" width="24" height="24" />
-      <!-- Seconda riga (sfalsata) -->
-      <use href="#cube" x="25" y="21.5" width="24" height="24" />
-      <use href="#cube" x="75" y="21.5" width="24" height="24" />
-      <use href="#cube" x="125" y="21.5" width="24" height="24" />
-      <!-- Animazione -->
-      <animateTransform
-        attributeName="patternTransform"
-        type="translate"
-        from="0 0"
-        to="50 45"
-        dur="10s"
-        repeatCount="indefinite" />
-    </pattern>
-
     <!-- Filtro glow -->
     <filter id="glow">
       <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
@@ -40,22 +20,34 @@
     </filter>
   </defs>
 
-  <!-- Rettangolo di sfondo con pattern -->
-  <rect width="100%" height="100%" fill="url(#isoPattern)" />
+  <!-- Sfondo neutro -->
+  <rect width="100%" height="100%" fill="#0d1117" />
+
+  <!-- Cubo singolo (grande, a sinistra del testo) -->
+  <use
+    x="400"
+    y="100"
+    href="#cube"
+    width="80"
+    height="80"
+    stroke="#CB4154"
+    filter="url(#glow)"/>
+
+    <!-- 135 465 -->
 
   <!-- Testo centrato -->
   <text
-    filter="url(#glow)"
-    x="50%"
+    x="500"
     y="50%"
-    text-anchor="middle"
+    text-anchor="center"
     dominant-baseline="middle"
     font-family="Segoe UI, Roboto, sans-serif"
     font-size="80"
     font-weight="bold"
     fill="white"
     stroke="white"
-    stroke-width="2">
+    stroke-width="2"
+    filter="url(#glow)">
     Brick UI
   </text>
 </svg>
