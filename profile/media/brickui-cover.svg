@@ -8,11 +8,11 @@
       <path d="m10 14 11.77-6.87"/>
     </symbol>
 
-    <!-- Glow forte + flicker sincronizzato -->
+    <!-- Glow forte + pulsante -->
     <filter id="glow-pulse" x="-50%" y="-50%" width="200%" height="200%">
-      <!-- Glow base -->
+      <!-- Blur base -->
       <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blurBase" />
-      <!-- Glow extra pulsante -->
+      <!-- Blur extra -->
       <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blurPulse" />
       <feComponentTransfer in="blurPulse" result="pulseAlpha">
         <feFuncA type="table" tableValues="0 3">
@@ -22,7 +22,6 @@
                    repeatCount="indefinite" />
         </feFuncA>
       </feComponentTransfer>
-      <!-- Merge cubo e glow -->
       <feMerge>
         <feMergeNode in="blurBase"/>
         <feMergeNode in="pulseAlpha"/>
@@ -43,26 +42,32 @@
   <!-- Sfondo -->
   <rect width="100%" height="100%" fill="#0d1117"/>
 
-  <!-- Brick con glow + flicker (usiamo opacity del gruppo) -->
+  <!-- Cubo con effetto Overcharge -->
   <g transform="translate(440,140)">
-    <g opacity="1">
-      <use href="#cube"
-           x="-40"
-           y="-40"
-           width="80"
-           height="80"
-           stroke="#CB4154"
-           filter="url(#glow-pulse)" />
-      <animate attributeName="opacity"
-               values="1;1;1;0.5;1;1;1;0.4;1;1;1"
-               keyTimes="0;0.2;0.3;0.32;0.34;0.6;0.7;0.72;0.74;0.9;1"
-               dur="6s"
-               repeatCount="indefinite"
-               calcMode="discrete" />
-    </g>
+    <use href="#cube"
+         x="-40"
+         y="-40"
+         width="80"
+         height="80"
+         stroke="#CB4154"
+         filter="url(#glow-pulse)">
+      <!-- Overcharge: colore più brillante -->
+      <animate attributeName="stroke"
+               values="#CB4154;#FF6677;#CB4154"
+               keyTimes="0;0.5;1"
+               dur="3s"
+               repeatCount="indefinite" />
+      <!-- Overcharge: leggera espansione -->
+      <animateTransform attributeName="transform"
+                        type="scale"
+                        values="1;1.05;1"
+                        keyTimes="0;0.5;1"
+                        dur="3s"
+                        repeatCount="indefinite" />
+    </use>
   </g>
 
-  <!-- Testo -->
+  <!-- Testo con glow morbido -->
   <text
     x="520"
     y="50%"
