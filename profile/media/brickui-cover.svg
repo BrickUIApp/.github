@@ -77,9 +77,10 @@
   <text
     x="480"
     y="80%"
-    font-size="16"
+    font-size="18"
     fill="white"
     stroke="white"
+    font-family="Segoe UI, Roboto, sans-serif"
   >
     Build your dream brick by brick!
   </text>
