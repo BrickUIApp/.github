@@ -1,7 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300">
-
   <defs>
-    <!-- Cubo isometrico -->
     <symbol id="cube" viewBox="0 0 24 24" fill="transparent" stroke="#CB4154"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="m21.12 6.4-6.05-4.06a2 2 0 0 0-2.17-.05L2.95 8.41a2 2 0 0 0-.95 1.7v5.82a2 2 0 0 0 .88 1.66l6.05 4.07a2 
@@ -10,32 +8,21 @@
       <path d="m10 14 11.77-6.87"/>
     </symbol>
 
-    <!-- Glow forte per il brick -->
-    <filter id="glow-strong">
-      <feGaussianBlur stdDeviation="6" result="blur" />
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <!-- Glow forte per il brick + pulse -->
-    <filter id="glow-pulse" x="-50%" y="-50%" fill="#0d1117" width="200%" height="200%">
-      <!-- Blur base stabile -->
-      <feGaussianBlur stdDeviation="6" result="blurBase" />
-      
-      <!-- Blur extra che pulsa -->
-      <feGaussianBlur stdDeviation="12" result="blurPulse" />
+    <!-- Glow forte + flicker sincronizzato -->
+    <filter id="glow-pulse" x="-50%" y="-50%" width="200%" height="200%">
+      <!-- Glow base -->
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blurBase" />
+      <!-- Glow extra pulsante -->
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blurPulse" />
       <feComponentTransfer in="blurPulse" result="pulseAlpha">
         <feFuncA type="table" tableValues="0 3">
           <animate attributeName="tableValues"
-                  values="0 0.2;0.07 0.2;0 0.2"
-                  dur="3s"
-                  repeatCount="indefinite" />
+                   values="0 0.2;0.07 0.2;0 0.2"
+                   dur="3s"
+                   repeatCount="indefinite" />
         </feFuncA>
       </feComponentTransfer>
-      
-      <!-- Unione con l'elemento originale -->
+      <!-- Merge cubo e glow -->
       <feMerge>
         <feMergeNode in="blurBase"/>
         <feMergeNode in="pulseAlpha"/>
@@ -43,7 +30,7 @@
       </feMerge>
     </filter>
 
-    <!-- Glow più morbido per il testo -->
+    <!-- Glow morbido per il testo -->
     <filter id="glow-soft">
       <feGaussianBlur stdDeviation="2.5" result="blur"/>
       <feMerge>
@@ -56,26 +43,26 @@
   <!-- Sfondo -->
   <rect width="100%" height="100%" fill="#0d1117"/>
 
-  <!-- Brick con glow forte, pulse + flicker casuale -->
+  <!-- Brick con glow + flicker (usiamo opacity del gruppo) -->
   <g transform="translate(440,140)">
-    <use href="#cube"
-         x="-40"
-         y="-40"
-         width="80"
-         height="80"
-         stroke="#CB4154"
-         filter="url(#glow-pulse)">
-      <!-- Flicker irregolare (brevi lampi) -->
+    <g opacity="1">
+      <use href="#cube"
+           x="-40"
+           y="-40"
+           width="80"
+           height="80"
+           stroke="#CB4154"
+           filter="url(#glow-pulse)" />
       <animate attributeName="opacity"
                values="1;1;1;0.5;1;1;1;0.4;1;1;1"
                keyTimes="0;0.2;0.3;0.32;0.34;0.6;0.7;0.72;0.74;0.9;1"
                dur="6s"
                repeatCount="indefinite"
                calcMode="discrete" />
-    </use>
+    </g>
   </g>
 
-  <!-- Testo con glow morbido e stabile -->
+  <!-- Testo -->
   <text
     x="520"
     y="50%"
