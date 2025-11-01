@@ -2,7 +2,7 @@
 
   <defs>
     <!-- Cubo isometrico -->
-    <symbol id="cube" viewBox="0 0 24 24" fill="none" stroke="#CB4154"
+    <symbol id="cube" viewBox="0 0 24 24" fill="transparent" stroke="#CB4154"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="m21.12 6.4-6.05-4.06a2 2 0 0 0-2.17-.05L2.95 8.41a2 2 0 0 0-.95 1.7v5.82a2 2 0 0 0 .88 1.66l6.05 4.07a2 
       2 0 0 0 2.17.05l9.95-6.12a2 2 0 0 0 .95-1.7V8.06a2 2 0 0 0-.88-1.66Z"/>
@@ -12,9 +12,33 @@
 
     <!-- Glow forte per il brick -->
     <filter id="glow-strong">
-      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feGaussianBlur stdDeviation="6" result="blur" />
       <feMerge>
         <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glow forte per il brick + pulse -->
+    <filter id="glow-pulse" x="-50%" y="-50%" fill="#0d1117" width="200%" height="200%">
+      <!-- Blur base stabile -->
+      <feGaussianBlur stdDeviation="6" result="blurBase" />
+      
+      <!-- Blur extra che pulsa -->
+      <feGaussianBlur stdDeviation="12" result="blurPulse" />
+      <feComponentTransfer in="blurPulse" result="pulseAlpha">
+        <feFuncA type="table" tableValues="0 3">
+          <animate attributeName="tableValues"
+                  values="0 0.2;0.07 0.2;0 0.2"
+                  dur="3s"
+                  repeatCount="indefinite" />
+        </feFuncA>
+      </feComponentTransfer>
+      
+      <!-- Unione con l'elemento originale -->
+      <feMerge>
+        <feMergeNode in="blurBase"/>
+        <feMergeNode in="pulseAlpha"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
@@ -40,14 +64,16 @@
          width="80"
          height="80"
          stroke="#CB4154"
-         filter="url(#glow-strong)">
+         filter="url(#glow-pulse)">
       <!-- Pulse morbido -->
+      <!--
       <animateTransform attributeName="transform"
                         type="scale"
                         values="1;1.05;1"
                         dur="3s"
                         repeatCount="indefinite"
                         additive="sum" />
+      -->
       <!-- Flicker irregolare (brevi lampi) -->
       <animate attributeName="opacity"
                values="1;1;1;0.5;1;1;1;0.4;1;1;1"
@@ -74,6 +100,7 @@
     Brick UI
   </text>
 
+  <!--
   <text
     x="480"
     y="80%"
@@ -84,4 +111,5 @@
   >
     Build your dream brick by brick!
   </text>
+  -->
 </svg>
