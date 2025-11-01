@@ -1,5 +1,5 @@
 <p align="center">
-  <img height="100%" width="200%" src="./media/cuboid-isometric-pattern.svg" align="center" />
+  <img height="50px" width="100%" src="./media/cuboid-isometric-pattern.svg" align="center" />
   <h2 align="center">BrickUI</h2>
   <p align="center"><i>"Build your dream brick by brick!"</i></p>
 </p>
