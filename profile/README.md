@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="./media/brickui-cover.svg" align="center" />
+  <a  href="https://github.com/BrickUIApp">
+    <img src="./media/brickui-cover.svg" align="center" />
+  </a>
   <p align="center" style="font-size: 16px;font-weight: bold"><i>"Build your dream brick by brick!"</i></p>
 </p>
 <br>
