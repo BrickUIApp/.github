@@ -65,15 +65,6 @@
          height="80"
          stroke="#CB4154"
          filter="url(#glow-pulse)">
-      <!-- Pulse morbido -->
-      <!--
-      <animateTransform attributeName="transform"
-                        type="scale"
-                        values="1;1.05;1"
-                        dur="3s"
-                        repeatCount="indefinite"
-                        additive="sum" />
-      -->
       <!-- Flicker irregolare (brevi lampi) -->
       <animate attributeName="opacity"
                values="1;1;1;0.5;1;1;1;0.4;1;1;1"
@@ -99,17 +90,4 @@
     filter="url(#glow-soft)">
     Brick UI
   </text>
-
-  <!--
-  <text
-    x="480"
-    y="80%"
-    font-size="24"
-    fill="white"
-    stroke="white"
-    font-family="Segoe UI, Roboto, sans-serif"
-  >
-    Build your dream brick by brick!
-  </text>
-  -->
 </svg>
