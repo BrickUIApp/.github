@@ -2,7 +2,7 @@
 
   <defs>
     <!-- Cubo isometrico -->
-    <symbol id="cube" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CB4154" 
+    <symbol id="cube" viewBox="0 0 24 24" fill="none" stroke="#CB4154"
       stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="m21.12 6.4-6.05-4.06a2 2 0 0 0-2.17-.05L2.95 8.41a2 2 0 0 0-.95 1.7v5.82a2 2 0 0 0 .88 1.66l6.05 4.07a2 
       2 0 0 0 2.17.05l9.95-6.12a2 2 0 0 0 .95-1.7V8.06a2 2 0 0 0-.88-1.66Z"/>
@@ -10,36 +10,59 @@
       <path d="m10 14 11.77-6.87"/>
     </symbol>
 
-    <!-- Filtro glow -->
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+    <!-- Glow forte per il brick -->
+    <filter id="glow-strong">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
       <feMerge>
-        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Glow più morbido per il testo -->
+    <filter id="glow-soft">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
 
-  <!-- Sfondo neutro -->
-  <rect width="100%" height="100%" fill="#0d1117" />
+  <!-- Sfondo -->
+  <rect width="100%" height="100%" fill="#0d1117"/>
 
-  <!-- Cubo singolo (grande, a sinistra del testo) -->
-  <use
-    x="400"
-    y="100"
-    href="#cube"
-    width="80"
-    height="80"
-    stroke="#CB4154"
-    filter="url(#glow)"/>
+  <!-- Brick con glow forte, pulse + flicker casuale -->
+  <g transform="translate(440,140)">
+    <use href="#cube"
+         x="-40"
+         y="-40"
+         width="80"
+         height="80"
+         stroke="#CB4154"
+         filter="url(#glow-strong)">
+      <!-- Pulse morbido -->
+      <animateTransform attributeName="transform"
+                        type="scale"
+                        values="1;1.05;1"
+                        dur="3s"
+                        repeatCount="indefinite"
+                        additive="sum" />
+      <!-- Flicker irregolare (brevi lampi) -->
+      <animate attributeName="opacity"
+               values="1;1;1;0.5;1;1;1;0.4;1;1;1"
+               keyTimes="0;0.2;0.3;0.32;0.34;0.6;0.7;0.72;0.74;0.9;1"
+               dur="6s"
+               repeatCount="indefinite"
+               calcMode="discrete" />
+    </use>
+  </g>
 
-    <!-- 135 465 -->
-
-  <!-- Testo centrato -->
+  <!-- Testo con glow morbido e stabile -->
   <text
-    x="500"
+    x="520"
     y="50%"
-    text-anchor="center"
+    text-anchor="start"
     dominant-baseline="middle"
     font-family="Segoe UI, Roboto, sans-serif"
     font-size="80"
@@ -47,7 +70,7 @@
     fill="white"
     stroke="white"
     stroke-width="2"
-    filter="url(#glow)">
+    filter="url(#glow-soft)">
     Brick UI
   </text>
 </svg>
