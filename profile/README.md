@@ -2,7 +2,7 @@
   <a  href="https://github.com/BrickUIApp">
     <img src="./media/brickui-cover.svg" align="center" />
   </a>
-  <p align="center" style="color: red">
+  <p align="center">
     <b><i>"Build your dream brick by brick!"</i></b>
   </p>
 </p>
