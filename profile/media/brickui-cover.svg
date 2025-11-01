@@ -73,4 +73,14 @@
     filter="url(#glow-soft)">
     Brick UI
   </text>
+
+  <text
+    x="480"
+    y="80%"
+    font-size="16"
+    fill="white"
+    stroke="white"
+  >
+    Build your dream brick by brick!
+  </text>
 </svg>
